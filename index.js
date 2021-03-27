@@ -9,6 +9,8 @@ const strftimePlugin = (option, dayjsClass, dayjsFactory) => {
             modifiedFormatter = strftime
         };
 
+        modifiedFormatter = modifiedFormatter.timezone(this.format('ZZ'))
+
         return modifiedFormatter(args, this.toDate())
     }
   }
