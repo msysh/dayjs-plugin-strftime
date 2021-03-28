@@ -35,3 +35,31 @@ let now = dayjs();
 // 25 januari, 2019 00:00:00
 now.strftime("%d %B, %Y %H:%M:%S", "nl_NL");
 ```
+
+with specifying time zone:
+
+```js
+const dayjs = require("dayjs");
+const utc = require('dayjs/plugin/utc');
+const timezone = require('dayjs/plugin/timezone');
+
+const strftime = require("dayjs-plugin-strftime");
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(strftime);
+
+let now = dayjs();
+
+let ny = now.tz('America/New_York');
+
+let tokyo = now.tz('Asia/Tokyo');
+
+// UTC : 2021-03-28T15:00:00+0000
+
+// 2021-03-28T11:00:00-0400
+console.log(ny.strftime("%Y-%m-%dT%H:%M:%S%z"));
+
+// 2021-03-29T00:00:00+0900
+console.log(tokyo.strftime("%Y-%m-%dT%H:%M:%S%z"));
+```
